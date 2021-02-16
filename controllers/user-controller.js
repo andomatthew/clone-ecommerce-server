@@ -11,7 +11,7 @@ class UserController {
     User.findOne({ where: { 'email': email } })
     .then(user => {
       if(!user || !comparePassword(password, user.password)) throw { name: 'loginError', message: 'Invalid Email or Password'}
-      const access_token = getToken({ id: user.id, email: user.email })
+      const access_token = getToken({ id: user.id, email: user.email, role: user.role })
       res.status(200).json({ id: user.id, email: user.email, access_token })
     })
     .catch(err => {

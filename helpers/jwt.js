@@ -5,4 +5,6 @@ function getToken(payload) {
   return token
 }
 
+
+
 module.exports = getToken

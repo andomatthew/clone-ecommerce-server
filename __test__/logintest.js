@@ -1,9 +1,9 @@
 const request = require('supertest')
 const app = require('../app')
-const {User, sequelize } = require('../models/')
+const { sequelize } = require('../models')
 
 
-describe('when user try to login, ', function() {
+describe('testing user login, ', function() {
   
   it('should return status 200 when email and password inputed was correct', function(done) {
     const body = { email: 'admin@mail.com', password: '1234' }
