@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest",
-    "dev": "nodemon bin/http.js"
+    "test": " NODE_ENV=test npx jest --detectOpenHandles --forceExit",
+    "dev": " NODE_ENV=development nodemon bin/http.js"
   },
   "repository": {
     "type": "git",

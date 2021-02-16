@@ -4,8 +4,8 @@ class ProductController {
 
   static create(req, res, next) {
     const { name, image_url, price, stocks } = req.body
-    
     let newProduct = { name, image_url, price, stocks }
+    console.log(newProduct)
 
     Product.create(newProduct)
     .then(product => {

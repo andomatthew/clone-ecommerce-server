@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'field is required'
+          msg: { name: 'empty field', message: 'field cannot be empty' }
         }
       }
     },
@@ -36,8 +36,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DOUBLE,
       validate: {
         min: {
-          args: 0,
-          msg: 'price input cannot below than 0'
+          args: [0],
+          msg: 'input cannot below than 0'
         },
         notEmpty: {
           args: true,
@@ -49,8 +49,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       validate: {
         min: {
-          args: 0,
-          msg: 'stocks input cannot below than 0'
+          args: [0],
+          msg: 'input cannot below than 0'
         },
         notEmpty: {
           args: true,

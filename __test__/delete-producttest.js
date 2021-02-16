@@ -58,6 +58,7 @@ describe('testing delete product', function(){
       else {
         expect(res.status).toEqual(200)
         expect(res.body).toHaveProperty('message')
+        //
       }
     })
     return done()
