@@ -1,24 +1,13 @@
 const request = require('supertest')
 const app = require('../app')
 const { sequelize } = require('../models')
+const getToken = require('../helpers/jwt')
 
 describe('testing delete product', function(){
 
-  let access_token
+  let access_token = getToken({ id: 1, email: 'admin@mail.com', role: 'admin' })
   let productId
   beforeAll((done) => {
-    const body = { email: 'admin@mail.com', password: '1234' }
-
-    request(app)
-    .post("/users/login")
-    .send(body)
-    .end((err, res) => {
-      if(err) {
-        return done(err)
-      }
-      access_token = res.body.access_token
-      return done()
-    })
 
     const body =  {
       name: 'Racket A',
@@ -57,8 +46,7 @@ describe('testing delete product', function(){
       }
       else {
         expect(res.status).toEqual(200)
-        expect(res.body).toHaveProperty('message')
-        //
+        expect(res.body).toContain('successfully delete product')
       }
     })
     return done()
@@ -73,8 +61,8 @@ describe('testing delete product', function(){
         return done(err)
       }
       else {
-        expect(res.status).toEqual(200)
-        expect(res.body).toHaveProperty('message')
+        expect(res.status).toEqual(401)
+        expect(res.body).toContain('invalid')
       }
     })
     return done()
@@ -82,7 +70,7 @@ describe('testing delete product', function(){
 
   it('should return status 401 and a message if the access token given is wrong', function(done) {
     
-    access_token +='a'
+    access_token ='a'
 
     request(app)
     .delete(`/products/${productId}`)
@@ -92,8 +80,8 @@ describe('testing delete product', function(){
         return done(err)
       }
       else {
-        expect(res.status).toEqual(200)
-        expect(res.body).toHaveProperty('message')
+        expect(res.status).toEqual(401)
+        expect(res.body).toContain('invalid')
       }
     })
     return done()

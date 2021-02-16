@@ -68,7 +68,7 @@ describe('testing create product', function() {
       }
       else {
         expect(res.status).toEqual(401)
-        expect(res.body.message).toEqual('message')
+        expect(res.body.message).toContain('Not Authenticate')
       }
     })
     return done()
@@ -92,8 +92,8 @@ describe('testing create product', function() {
         return done(err)
       }
       else {
-        expect(res.status).toEqual(201)
-        expect(res.body).toHaveProperty('message')
+        expect(res.status).toEqual(401)
+        expect(res.body).toContain('Not Authenticate')
       }
     })
     return done()
@@ -115,14 +115,14 @@ describe('testing create product', function() {
         return done(err)
       }
       else {
-        expect(res.status).toEqual(201)
-        expect(res.body).toHaveProperty('message')
+        expect(res.status).toEqual(400)
+        expect(res.body).toContain('Field is required')
       }
     })
     return done()
   })
 
-  it('should return status 400 if the stock input is below than 0', function(done) {
+  it('should return status 400 if the stocks input is below than 0', function(done) {
     const body =  {
       name: 'Racket A',
       image_url : 'https://www.bigw.com.au/medias/sys_master/images/images/h70/h7d/14401110638622.jpg', 
@@ -138,8 +138,8 @@ describe('testing create product', function() {
         return done(err)
       }
       else {
-        expect(res.status).toEqual(201)
-        expect(res.body).toHaveProperty('message')
+        expect(res.status).toEqual(400)
+        expect(res.body).toContain('input cannot below than 0')
       }
     })
     return done()
@@ -161,8 +161,8 @@ describe('testing create product', function() {
         return done(err)
       }
       else {
-        expect(res.status).toEqual(201)
-        expect(res.body).toHaveProperty('message')
+        expect(res.status).toEqual(400)
+        expect(res.body).toContain('input cannot below than 0')
       }
     })
     return done()
@@ -184,8 +184,8 @@ describe('testing create product', function() {
         return done(err)
       }
       else {
-        expect(res.status).toEqual(201)
-        expect(res.body).toHaveProperty('message')
+        expect(res.status).toEqual(400)
+        expect(res.body).toContain('wrong data type')
       }
     })
     return done()

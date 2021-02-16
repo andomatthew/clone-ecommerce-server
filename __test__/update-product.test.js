@@ -104,7 +104,7 @@ describe('testing updating product', function() {
       }
       else {
         expect(res.status).toEqual(401)
-        expect(res.body).toHaveProperty('message')
+        expect(res.body).toContain('Not Authenticate')
       }
     })
     return done()
@@ -203,7 +203,7 @@ describe('testing updating product', function() {
       }
       else {
         expect(res.status).toEqual(400)
-        expect(res.body).toHaveProperty('input cannot below than 0')
+        expect(res.body).toContain('input cannot below than 0')
         //
       }
     })

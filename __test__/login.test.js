@@ -58,7 +58,7 @@ describe('testing user login, ', function() {
     })
   })
 
-  it('should return status 401 when there is no any input', function(done) {
+  it('should return status 400 when there is no any input', function(done) {
     const body = { email: '', password: '' }
     request(app)
     .post("/users/login")
@@ -68,7 +68,7 @@ describe('testing user login, ', function() {
         return done(err)
       }
       else {
-        expect(res.status).toEqual(401)
+        expect(res.status).toEqual(400)
         expect(res.body).toEqual({ message: 'Field cannot empty' })
         return done()
       }
