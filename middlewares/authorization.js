@@ -10,6 +10,7 @@ function authorization(req, res, next) {
   .then(user => {
     if(!user || (user && user.role !== 'admin')) throw( { name: 'authorization', message: 'Not Authorized' })
     console.log('lewat authorization======')
+    req.data.product_id = +req.params.id
     next()
   })
   .catch(err => {

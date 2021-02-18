@@ -72,7 +72,7 @@ class ProductController {
   }
 
   static delete(req, res, next) {
-
+    
     Product.destroy({ where: { 'id': req.data.product_id } })
     .then(() => {
       res.status(200).json({ message: `sucessfully delete product with id ${req.data.product_id}`})
