@@ -18,10 +18,6 @@ module.exports = {
     "dialect": "postgres"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "use_env_variable": "postgres://mzqnlzwmcgzbag:6af2b65d9193db7af09c86cce9bc58aca40391c667434cab259a07f0577abb9a@ec2-18-204-74-74.compute-1.amazonaws.com:5432/dbihuogomaudue"
   }
 }
