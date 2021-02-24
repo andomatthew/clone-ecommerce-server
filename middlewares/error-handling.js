@@ -1,5 +1,6 @@
 
 function errorHandling(err, req, res, next) {
+  console.log(err)
   let message
   switch(err.name) {
     case 'loginError':
@@ -22,6 +23,8 @@ function errorHandling(err, req, res, next) {
       message = 'wrong input data type'
       res.status(400).json({ message })
       break
+    case 'Over Quantity':
+      res.status(400).json({ message: err.message })
     default:
       res.status(500).json({ message: 'internal server serror'})
   }

@@ -5,6 +5,17 @@ const getToken  = require('../helpers/jwt')
 
 class UserController {
 
+  static register (req, res, next) {
+    const { email, password } = req.body
+    User.create({ email, password })
+    .then(newUser => {
+      res.status(201).json({ id: newUser.id, email: newUser.email })
+    })
+    .catch(err => {
+      next(err)
+    })
+  }
+
   static login(req, res, next) {
     const { email, password } = req.body
     if(email === '' || password === '') throw {name: 'empty field', message: 'Field cannot empty'}
