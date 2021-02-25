@@ -6,11 +6,12 @@ class CartController {
     let { quantity, productId } = req.body
     const newCart =  {
       productId,
-      userId: req.params.id,
+      userId: req.data.id,
       quantity
     }
+    const userId = req.data.id
     Cart.findOne({
-      where: { 'userId': req.params.id, 'productId': productId },
+      where: { userId, productId },
       include: Product
     })
     .then(cart => {
@@ -19,9 +20,9 @@ class CartController {
         .then(cart => {
           console.log('masuk add')
           res.status(201).json(cart)
-          .catch(err => {
-            next(err)
-          })
+        })
+        .catch(err => {
+          next(err)
         })
       }
       else {
@@ -30,7 +31,7 @@ class CartController {
         Cart.update({
           quantity: newQuantity 
         }, {
-          where: { 'userId': req.params.id, 'productId': productId }
+          where: { userId, productId }
         })
         .then(cart => {
           res.status(200).json(cart)
@@ -47,11 +48,11 @@ class CartController {
 
   static showCart(req, res, next) {
     Cart.findAll({ 
-      where: { 'userId': req.params.id },
+      where: { 'userId': req.data.id },
       include: Product
     })
     .then(carts => {
-      res.status(200).json(carts)
+      res.status(201).json(carts)
     })
     .catch(err => {
       next(err)
@@ -60,8 +61,8 @@ class CartController {
 
   static removeCart(req, res, next) {
     
-    const { productId, userId } = req.body
-    
+    const { productId } = req.body
+    const userId = req.data.id
     Cart.findOne({
       where: { productId, userId }
     })
@@ -82,8 +83,9 @@ class CartController {
   static updateCart(req, res, next) {
   
     const { quantity, productId } = req.body
+    const userId = req.data.id
     Cart.findOne({
-      where: { 'userId': req.params.id, 'productId': productId },
+      where: { userId, productId },
       include: Product
     })
     .then(cart => {
@@ -91,7 +93,7 @@ class CartController {
       Cart.update({
         quantity 
       }, {
-        where: { 'userId': req.params.id, 'productId': productId },
+        where: { userId, productId },
         returning: true
       })
       .then(cart => {

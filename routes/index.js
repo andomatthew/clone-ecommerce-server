@@ -8,16 +8,15 @@ const authenticationCustomer = require('../middlewares/authenticationCustomer')
 
 router.post('/users/login', UserController.login)
 router.post('/users/register', UserController.register)
-router.get('/customers', ProductController.getAllProducts) // endpoint for client
+router.get('/customers', ProductController.getAllProducts)
 
 router.use(authentication)
 router.get('/products', ProductController.getAllProducts)
 
-// router.use()
-router.get('/cart/:id',authenticationCustomer, CartController.showCart)
-router.post('/cart/:id', authenticationCustomer, CartController.addToCart)
-router.patch('/cart/:id', authenticationCustomer, CartController.updateCart)
-router.delete('/cart/:id', authenticationCustomer, CartController.removeCart)
+router.get('/carts',authenticationCustomer, CartController.showCart)
+router.post('/carts', authenticationCustomer, CartController.addToCart)
+router.patch('/carts', authenticationCustomer, CartController.updateCart)
+router.delete('/carts', authenticationCustomer, CartController.removeCart)
 
 router.use('/products/:id', authorization)
 router.post('/products', ProductController.create)

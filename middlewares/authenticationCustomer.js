@@ -12,7 +12,6 @@ function authenticationCustomer(req, res, next) {
     .then(user => {
       if(!user) throw({ name: 'authentication', message: 'user not found' })
       if(user.role !== 'customer') throw({ name:'authentication', messgae: 'Not Authenticate' })
-      // return Product.findOne({ where: { 'id': productId }  })
       req.data = decoded
       next()
     })

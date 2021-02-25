@@ -239,3 +239,203 @@
     "message": "Not Authorized"
   }
   ```
+  ---
+  ## URL :
+- /users/register
+
+## Method:
+- POST
+
+## URL Params
+- None
+
+## Header
+- None
+
+## Data Params
+- email
+- password
+
+## Success Response:
+- Code: 201
+- Content:
+  ```json
+  {
+    "id": 6,
+    "email": "matthew@mail.com"
+  }
+  ```
+## Error Response:
+- Code: 400
+- Content:
+  ```json
+  {
+    "message": "email must be unique"
+  }
+  ```
+---
+
+  ## URL :
+- /carts
+
+## Method:
+- GET
+
+## URL Params
+- None
+
+## Header
+- Required:
+
+  access_token
+
+## Data Params
+- None
+
+## Success Response:
+- Code: 200
+- Content:
+  ```json
+  [
+    {
+        "productId": 231,
+        "userId": 3,
+        "quantity": 10,
+        "createdAt": "2021-02-24T09:00:57.696Z",
+        "updatedAt": "2021-02-24T09:02:58.575Z",
+        "Product": {
+            "id": 231,
+            "name": "Yonex Ezone DR Lite 100",
+            "image_url": "https://ecs7.tokopedia.net/img/cache/700/product-1/2018/5/20/3302315/3302315_b670a05a-5cfa-416f-8a66-a27d727333e8_418_418.png",
+            "price": 2000000,
+            "stocks": 10,
+            "createdAt": "2021-02-23T04:16:40.539Z",
+            "updatedAt": "2021-02-23T04:16:40.539Z"
+        }
+    }
+  ]
+  ```
+## Error Response:
+- Code: 400
+- Content:
+  ```json
+  {
+    "message": "Not Authenticate"
+  }
+  ```
+---
+
+  ## URL :
+- /carts
+
+## Method:
+- POST
+
+## URL Params
+- None
+
+## Header
+- Required:
+
+  access_token
+
+## Data Params
+- productId
+- quantity
+
+## Success Response:
+- Code: 201
+- Content:
+  ```json
+  {
+    "productId": 232,
+    "userId": 3,
+    "quantity": 1,
+    "updatedAt": "2021-02-25T01:14:53.601Z",
+    "createdAt": "2021-02-25T01:14:53.601Z"
+  }
+  ```
+## Error Response:
+- Code: 400
+- Content:
+  ```json
+  {
+    "message": "Out of stock"
+  }
+  ```
+---
+
+  ## URL :
+- /carts
+
+## Method:
+- PATCH
+
+## URL Params
+- None
+
+## Header
+- Required:
+
+  access_token
+
+## Data Params
+- productId
+- quantity
+
+## Success Response:
+- Code: 200
+- Content:
+  ```json
+  {
+    "productId": 232,
+    "userId": 3,
+    "quantity": 2,
+    "updatedAt": "2021-02-25T01:14:53.601Z",
+    "createdAt": "2021-02-25T01:14:53.601Z"
+  }
+  ```
+## Error Response:
+- Code: 400
+- Content:
+  ```json
+  {
+    "message": "Out of stock"
+  }
+  ```
+---
+
+  ## URL :
+- /carts
+
+## Method:
+- DELETE
+
+## URL Params
+- None
+
+## Header
+- Required:
+
+  access_token
+
+## Data Params
+- productId
+
+## Success Response:
+- Code: 200
+- Content:
+  ```json
+  {
+    "message": "item successfuly deleted"
+  }
+  ```
+## Error Response:
+- Code: 400
+- Content:
+  ```json
+  {
+    "message": "error not found"
+  }
+  ```
+---
